@@ -410,6 +410,8 @@ static CGFloat kBorderWidth = 10;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+  [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('cancel').onclick = function onclick(event) { window.location.href = 'fbconnect:cancel'; }"];
+	
   [_spinner stopAnimating];
   _spinner.hidden = YES;
   
