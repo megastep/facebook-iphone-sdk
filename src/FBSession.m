@@ -43,6 +43,11 @@ static FBSession* sharedSession = nil;
   return sharedSession;
 }
 
++ (void)logout {
+  [[FBSession session] logout];
+	[FBSession deleteFacebookCookies];
+}
+
 + (void)setSession:(FBSession*)session {
   sharedSession = session;
 }
@@ -262,8 +267,8 @@ static FBSession* sharedSession = nil;
       }
     }
 
-    [self deleteFacebookCookies];
-    
+    [FBSession deleteFacebookCookies];
+	  
 
     _uid = 0;
     [_sessionKey release];
@@ -280,7 +285,7 @@ static FBSession* sharedSession = nil;
       }
     }
   } else {
-    [self deleteFacebookCookies];
+    [FBSession deleteFacebookCookies];
     [self unsave];
   }
 }
@@ -289,7 +294,7 @@ static FBSession* sharedSession = nil;
   [self performRequest:request enqueue:YES];
 }
 
-- (void)deleteFacebookCookies {
++ (void)deleteFacebookCookies {
 		NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     NSArray* facebookCookies = [cookies cookiesForURL:
       [NSURL URLWithString:@"http://login.facebook.com"]];

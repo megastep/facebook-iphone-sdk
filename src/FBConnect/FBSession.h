@@ -109,6 +109,11 @@
 + (FBSession*)session;
 
 /**
+ * Calls logout on session and clears cookies
+ */
++ (void)logout;
+
+/**
  * Sets the globally shared session instance.
  *
  * This session is not retained, so you are still responsible for retaining it yourself.  The
@@ -170,7 +175,7 @@
 /**
  * Deletes all cookies belonging to facebook
  */
-- (void)deleteFacebookCookies;
++ (void)deleteFacebookCookies;
 
 @end
 
