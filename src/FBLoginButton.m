@@ -32,7 +32,7 @@ static UIAccessibilityTraits *traitImage = nil, *traitButton = nil;
 
 + (void)initialize {
 	if (self == [FBLoginButton class]) {
-		// Try to load the accessibility trait values on OS 3.0
+		// Try to load the accessibility trait values on OS 3.0 - these are not constants but actual symbols!
 		traitImage = dlsym(RTLD_SELF, "UIAccessibilityTraitImage");
 		traitButton = dlsym(RTLD_SELF, "UIAccessibilityTraitButton");
 	}
@@ -79,8 +79,19 @@ static UIAccessibilityTraits *traitImage = nil, *traitButton = nil;
     [_session logout];
   } else {
     FBLoginDialog* dialog = [[[FBLoginDialog alloc] initWithSession:_session] autorelease];
+	dialog.delegate = self;
     [dialog show];
   }
+}
+
+- (void)dialog:(FBDialog*)dialog didFailWithError:(NSError*)error {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Facebook Error",@"Error dialog title")
+													message:[NSString stringWithFormat:@"%@.",[error localizedDescription]] 
+												   delegate:nil
+										  cancelButtonTitle:NSLocalizedString(@"OK", @"Facebook error dismiss button")
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];	
 }
 
 - (void)initButton {

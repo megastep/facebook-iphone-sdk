@@ -15,6 +15,7 @@
 */
 
 #import "FBConnect/FBSession.h"
+#import "FBConnect/FBDialog.h"
 
 typedef enum {
   FBLoginButtonStyleNormal,
@@ -27,7 +28,7 @@ typedef enum {
  * The button will automatically change to reflect the state of the session, showing
  * "login" if the session is not connected, and "logout" if the session is connected.
  */
-@interface FBLoginButton : UIControl <FBSessionDelegate> {
+@interface FBLoginButton : UIControl <FBSessionDelegate, FBDialogDelegate> {
   FBLoginButtonStyle _style;
   FBSession* _session;
   UIImageView* _imageView;

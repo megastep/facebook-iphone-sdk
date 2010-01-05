@@ -26,7 +26,7 @@
 
 @implementation NSDictionary (FBJSON)
 
-- (NSString *) getJSON {
+- (NSString *) JSONString {
 	BOOL previous = NO;
 	id value;
 	
@@ -36,8 +36,8 @@
 			[str appendString:@","];
 		}
 		value = [self objectForKey:key];
-		if ([value respondsToSelector:@selector(getJSON)])
-			value = [value getJSON];
+		if ([value respondsToSelector:@selector(JSONString)])
+			value = [value JSONString];
 		[str appendFormat:@"\"%@\":\"%@\"", key, value];  
 		previous = YES;
 	}
@@ -49,15 +49,15 @@
 
 @implementation NSArray (FBJSON)
 
-- (NSString *) getJSON {
+- (NSString *) JSONString {
 	BOOL previous = NO;
 	NSMutableString *str = [NSMutableString stringWithString:@"["];
 	for (id key in self) {
 		if (previous) {
 			[str appendString:@","];
 		}
-		if ([key respondsToSelector:@selector(getJSON)]) {
-			[str appendFormat:@"\"%@\"", [key getJSON]];
+		if ([key respondsToSelector:@selector(JSONString)]) {
+			[str appendFormat:@"\"%@\"", [key JSONString]];
 		} else {
 			[str appendFormat:@"\"%@\"", key];
 		}

@@ -16,6 +16,7 @@
 
 #import "FBConnect/FBRequest.h"
 #import "FBConnect/FBSession.h"
+#import "FBConnect/FBJSON.h"
 #import "FBXMLHandler.h"
 #import <CommonCrypto/CommonDigest.h>
 
@@ -118,7 +119,11 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
       [joined appendString:obj];
       [joined appendString:@"="];
       [joined appendString:value];
-    }
+    } else if ([value respondsToSelector:@selector(JSONString)]) {
+	  [joined appendString:obj];
+	  [joined appendString:@"="];
+	  [joined appendString:[value JSONString]];
+	}
   }
 
   if ([self isSpecialMethod]) {
@@ -144,10 +149,16 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
 
   [self utfAppendBody:body data:[NSString stringWithFormat:@"--%@\r\n", kStringBoundary]];
   
+  id val;
   for (id key in [_params keyEnumerator]) {
     [self utfAppendBody:body
                    data:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key]];
-    [self utfAppendBody:body data:[_params valueForKey:key]];
+    val = [_params valueForKey:key];
+	if ([val respondsToSelector:@selector(JSONString)]) {
+	  [self utfAppendBody:body data:[val JSONString]];
+	} else {
+      [self utfAppendBody:body data:val];
+	}
     [self utfAppendBody:body data:endLine];
   }
 
@@ -164,7 +175,7 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
       [self utfAppendBody:body
                      data:[NSString stringWithFormat:@"Content-Disposition: form-data; filename=\"data\"\r\n"]];
       [self utfAppendBody:body
-                     data:[NSString stringWithString:@"Content-Type: content/unknown\r\n\r\n"]];
+                     data:[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"]];
       [body appendData:(NSData*)_dataParam];
     }
     [self utfAppendBody:body data:endLine];
@@ -208,7 +219,7 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
 }
 
 - (void)handleResponseData:(NSData*)data {
-  FBLOG2(@"DATA: %s", data.bytes);
+  FBLOG2(@"DATA: %@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
   NSError* error = nil;
   id result = [self parseXMLResponse:data error:&error];
   if (error) {

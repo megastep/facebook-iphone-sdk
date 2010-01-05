@@ -26,9 +26,9 @@
 #import <Foundation/Foundation.h>
 
 @interface NSDictionary (FBJSON)
-- (NSString *) getJSON;
+- (NSString *) JSONString;
 @end
 
 @interface NSArray (FBJSON)
-- (NSString *) getJSON;
+- (NSString *) JSONString;
 @end
