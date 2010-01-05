@@ -33,6 +33,8 @@
 		BEF709490EA02F1700EFA6FD /* FBConnectGlobal.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF709300EA02F1700EFA6FD /* FBConnectGlobal.h */; };
 		BEF7094B0EA02F1700EFA6FD /* FBRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF709320EA02F1700EFA6FD /* FBRequest.h */; };
 		BEF7094D0EA02F1700EFA6FD /* FBSession.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF709340EA02F1700EFA6FD /* FBSession.h */; };
+		EA1F8FC510F30EAE003E6787 /* FBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1F8FC410F30EAD003E6787 /* FBJSON.m */; };
+		EA1F8FC710F30EC0003E6787 /* FBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = EA1F8FC610F30EC0003E6787 /* FBJSON.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		BEF709300EA02F1700EFA6FD /* FBConnectGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBConnectGlobal.h; path = FBConnect/FBConnectGlobal.h; sourceTree = "<group>"; };
 		BEF709320EA02F1700EFA6FD /* FBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBRequest.h; path = FBConnect/FBRequest.h; sourceTree = "<group>"; };
 		BEF709340EA02F1700EFA6FD /* FBSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBSession.h; path = FBConnect/FBSession.h; sourceTree = "<group>"; };
+		EA1F8FC410F30EAD003E6787 /* FBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBJSON.m; sourceTree = "<group>"; };
+		EA1F8FC610F30EC0003E6787 /* FBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBJSON.h; path = FBConnect/FBJSON.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +142,8 @@
 				BECB0AE20F56C89D0037C6F1 /* FBPermissionDialog.m */,
 				84C762B71084A08800FB5EE0 /* FBStreamDialog.h */,
 				84C762B51084A07A00FB5EE0 /* FBStreamDialog.m */,
+				EA1F8FC610F30EC0003E6787 /* FBJSON.h */,
+				EA1F8FC410F30EAD003E6787 /* FBJSON.m */,
 				BE9D2AB10F5E16ED00F74C9B /* FBConnect.bundle */,
 			);
 			name = FBConnect;
@@ -160,6 +166,7 @@
 				BECB0AEE0F56C8A70037C6F1 /* FBPermissionDialog.h in Headers */,
 				BE621DE90F6888820004CBDF /* FBLoginButton.h in Headers */,
 				84C762B81084A08800FB5EE0 /* FBStreamDialog.h in Headers */,
+				EA1F8FC710F30EC0003E6787 /* FBJSON.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +221,7 @@
 				BECB0AE60F56C89D0037C6F1 /* FBPermissionDialog.m in Sources */,
 				BE621DE70F68887D0004CBDF /* FBLoginButton.m in Sources */,
 				84C762B61084A07A00FB5EE0 /* FBStreamDialog.m in Sources */,
+				EA1F8FC510F30EAE003E6787 /* FBJSON.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
