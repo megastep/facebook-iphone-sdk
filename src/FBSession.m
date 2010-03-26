@@ -303,4 +303,21 @@ static FBSession* sharedSession = nil;
     }
 }
 
++ (BOOL)openPage:(FBUID)uid {
+	NSString *fburl = [NSString stringWithFormat:@"fb://profile/%lld",uid];
+	if ([[UIApplication sharedApplication] openURL:[NSURL URLWithString:fburl]] == NO) {
+		NSString *url = [NSString stringWithFormat:@"http://touch.facebook.com/#profile.php?id=%lld",uid];
+		return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+	}
+	return NO;
+}
+
++ (BOOL)openPage {
+	FBUID uid = [FBSession session].uid;
+	if (uid) {
+		return [self openPage:uid];
+	}
+	return NO;
+}
+
 @end

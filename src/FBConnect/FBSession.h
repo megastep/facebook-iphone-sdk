@@ -177,6 +177,16 @@
  */
 + (void)deleteFacebookCookies;
 
+/**
+ * Opens the page in the Facebook app (if installed) or Safari. Returns NO if failed.
+ */
++ (BOOL)openPage:(FBUID)uid;
+
+/**
+ * Opens the page for the currently logged-in user. Returns NO if failed.
+ */
++ (BOOL)openPage;
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
